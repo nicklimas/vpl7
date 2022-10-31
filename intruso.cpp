@@ -8,30 +8,43 @@ void Intruso::set_senha_vazada(std::string vazou){
         if (ch == 'A'){
             senha += aux [0];
             senha += aux [1];
-            numero_de_caracteres++;
+            
         }
         if (ch == 'B'){
             senha += aux [2];
             senha += aux [3];
-            numero_de_caracteres++;
+            
             }
         if (ch == 'C'){ 
             senha += aux [4];
             senha += aux [5];
-            numero_de_caracteres++;
+            
             }
         if (ch == 'D'){
             senha += aux [6];
             senha += aux [7];
-            numero_de_caracteres++;
+            
             }
         if (ch == 'E'){
             senha += aux [8];
             senha += aux [9];
-            numero_de_caracteres++;
+        
             }
     }
-    senhas.push_back(senha);
+
+    bool repete;
+    for (auto &x : senhas){
+        if (x == senha)
+            repete = true;
+        if (x != senha)
+            repete = false;
+    }
+    
+    if (!repete)
+        senhas.push_back(senha);
+    
+    
+    
 }
 
 std::string Intruso::tira_espaco_string (std::string str){
