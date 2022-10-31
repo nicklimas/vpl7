@@ -44,5 +44,22 @@ std::string Intruso::tira_espaco_string (std::string str){
 }
 
 std::string Intruso::crack_senha(){
-   
+    std::string digitos;
+    for (int i = 0; i < senhas.size(); i++){
+        if (i+1 == senhas.size())
+            break;
+        else {
+            for (int caracter = 0; caracter < numero_de_caracteres; caracter++){
+                if(caracter % 2 == 0){
+                    if (senhas[i][caracter] == senhas [i+1][caracter] || senhas[i][caracter] == senhas [i+1][caracter+1])
+                        digitos += senhas [i][caracter];
+                }
+                if(caracter % 2 == 1){
+                    if (senhas[i][caracter] == senhas [i+1][caracter-1] || senhas[i][caracter] == senhas [i+1][caracter])
+                        digitos += senhas [i][caracter];  
+                } 
+            }
+        }  
+    }
+    return digitos;
 }
