@@ -31,7 +31,6 @@ void Intruso::set_senha_vazada(std::string vazou){
             numero_de_caracteres++;
             }
     }
-    std::cout << senha << std::endl;
     senhas.push_back(senha);
 }
 
