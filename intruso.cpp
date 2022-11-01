@@ -42,9 +42,6 @@ void Intruso::set_senha_vazada(std::string vazou){
     
     if (!repete)
         senhas.push_back(senha);
-    
-    
-    
 }
 
 std::string Intruso::tira_espaco_string (std::string str){
@@ -56,23 +53,29 @@ std::string Intruso::tira_espaco_string (std::string str){
     return aux;
 }
 
+int Intruso::calcula_numero_de_caracteres() {
+    return senhas [0].size();
+}
+
 std::string Intruso::crack_senha(){
     std::string digitos;
-    for (int i = 0; i < senhas.size(); i++){
-        if (i+1 == senhas.size())
-            break;
-        else {
-            for (int caracter = 0; caracter < numero_de_caracteres; caracter++){
-                if(caracter % 2 == 0){
-                    if (senhas[i][caracter] == senhas [i+1][caracter] || senhas[i][caracter] == senhas [i+1][caracter+1])
-                        digitos += senhas [i][caracter];
-                }
-                if(caracter % 2 == 1){
-                    if (senhas[i][caracter] == senhas [i+1][caracter-1] || senhas[i][caracter] == senhas [i+1][caracter])
-                        digitos += senhas [i][caracter];  
-                } 
+    numero_de_caracteres = calcula_numero_de_caracteres();
+    char numero;
+    for (int caracter = 0; caracter < numero_de_caracteres; caracter++){
+        if (caracter % 2 == 0){
+            for (int i = 0; i + 1 < senhas.size(); i++){
+                if (senhas[i][caracter] == senhas[i+1][caracter] || senhas[i][caracter] == senhas [i+1][caracter+1])
+                    numero = senhas[i][caracter];
             }
-        }  
+        }
+        if(caracter % 2 == 1){
+            for (int i = 0; i + 1 < senhas.size(); i++){
+                if (senhas[i][caracter] == senhas [i+1][caracter-1] || senhas[i][caracter] == senhas [i+1][caracter])
+                        numero = senhas[i][caracter];
+             }
+            digitos += numero;
+            digitos += ' ';
+        }
     }
-    return digitos;
+    return digitos;       
 }
